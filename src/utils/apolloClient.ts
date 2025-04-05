@@ -27,6 +27,7 @@ async function refreshToken(client: ApolloClient<NormalizedCacheObject>) {
     }
     localStorage.setItem("accessToken", newAccessToken)
     return `Bearer ${newAccessToken}`
+  
   } catch (err) {
     throw new Error("Error getting new access token.")
   }
@@ -36,12 +37,6 @@ let retryCount = 0
 const maxRetry = 3
 
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-  // const operationName = operation.operationName
-  // console.log(operationName, "operationName")
-  // if (["LoginUser", "RegisterUser"].includes(operationName)) {
-  //   console.log("Login or Register operation")
-  //   return forward(operation)
-  // }
 
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
@@ -94,5 +89,6 @@ export const client = new ApolloClient({
   headers: {
     "Content-Type": "application/json",
   },
+  
   link: ApolloLink.from([errorLink, uploadLink]),
 })
