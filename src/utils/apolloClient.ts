@@ -1,3 +1,6 @@
+//fix one error in appolo-upload-client
+// https://www.youtube.com/watch?v=Xy15S0nQxBQ&t=3980s at 1:06:00
+
 import {
   ApolloClient,
   InMemoryCache,
